@@ -17,12 +17,33 @@ This is a web application built using **CodeIgniter 4**, **Google Calendar API**
 
 ## 🛠️ Technologies
 
-- PHP 8.x
+- PHP 8.1 or higher
 - CodeIgniter 4.6+
 - Google API PHP Client
 - Twilio PHP SDK
 - MySQL (with migrations)
 - Composer
+
+## 🔧 Google Cloud Setup (OAuth + Calendar API)
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project.
+3. Navigate to `APIs & Services → OAuth consent screen`, configure and publish.
+4. Go to `Credentials` and create an OAuth Client ID:
+   - Choose Web Application
+   - Add `http://localhost:8080/auth/callback` as a redirect URI
+   - Once created, copy the Client ID and Client Secret to `.env`
+5. Enable **Google Calendar API** from the Library.
+
+
+---
+
+## ☎️ Twilio Setup
+
+1. Go to [Twilio Console](https://www.twilio.com/console)
+2. Copy your **Account SID** and **Auth Token**
+3. Buy or verify a phone number that supports **voice** calls. In trial only verified numbers will triggered from App.
+4. Add credentials to `.env`
 
 ---
 
@@ -31,7 +52,7 @@ This is a web application built using **CodeIgniter 4**, **Google Calendar API**
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/google-event-caller.git
+git clone https://github.com/jifinwoW/gapp.git
 cd google-event-caller
 ```
 
@@ -46,7 +67,7 @@ composer install
 Copy the example environment file and fill in your credentials:
 
 ```bash
-cp env .env
+cp .env.example .env
 ```
 
 Edit `.env`:
@@ -64,11 +85,17 @@ TWILIO_TOKEN = your-twilio-token
 TWILIO_FROM = your-twilio-verified-number
 ```
 
+```bash
+Generate app encryption key
+php spark key:generate
+```
+
 ---
 
 ### 4. Run Migrations
 
 ```bash
+Create a database before Migration
 php spark migrate
 ```
 
@@ -134,7 +161,7 @@ app/
 
 ## 🎥 Demo
 
-> (Add GIF or link if available)
+> https://www.awesomescreenshot.com/video/41573632?key=c5455d1300460fba2d4fc393a5fced93
 
 ---
 
